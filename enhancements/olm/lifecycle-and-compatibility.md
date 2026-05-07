@@ -163,7 +163,7 @@ The lifecycle FBC metadata follows the schema:
             "minItems": 1,
             "items": {
               "type": "object",
-              "required": ["name", "timeBegin", "timeEnd"],
+              "required": ["name", "startDate", "endDate"],
               "additionalProperties": false,
               "properties": {
                 "name": {
@@ -177,12 +177,12 @@ The lifecycle FBC metadata follows the schema:
                     "Extended life cycle support (ELS) add-on"
                   ]
                 },
-                "timeBegin": {
+                "startDate": {
                   "type": "string",
                   "format": "date",
                   "description": "Start date of this phase (inclusive)."
                 },
-                "timeEnd": {
+                "endDate": {
                   "type": "string",
                   "format": "date",
                   "description": "End date of this phase (inclusive)."
@@ -242,8 +242,8 @@ The lifecycle FBC metadata follows the schema:
 | Field | Type | Required | Description |
 | :--- | :--- | :--- | :--- |
 | `name` | string | yes | Phase name (e.g., `Full support`, `Maintenance support`). |
-| `timeBegin` | string | yes | Start date in `YYYY-MM-DD` format. |
-| `timeEnd` | string | yes | End date in `YYYY-MM-DD` format. Must be strictly after `timeBegin`. |
+| `startDate` | string | yes | Start date in `YYYY-MM-DD` format. |
+| `endDate` | string | yes | End date in `YYYY-MM-DD` format. Must be strictly after `startDate`. |
 
 Phases within a version are ordered chronologically and must be contiguous: the start date of phase N must be exactly one day after the end date of phase N-1. There must be no gaps or overlaps between adjacent phases.
 
@@ -265,20 +265,20 @@ versions:
   - name: "4.12"
     phases:
       - name: Full support
-        timeBegin: "2023-01-17"
-        timeEnd: "2023-08-17"
+        startDate: "2023-01-17"
+        endDate: "2023-08-17"
       - name: Maintenance support
-        timeBegin: "2023-08-18"
-        timeEnd: "2024-07-17"
+        startDate: "2023-08-18"
+        endDate: "2024-07-17"
       - name: Extended update support
-        timeBegin: "2024-07-18"
-        timeEnd: "2025-01-17"
+        startDate: "2024-07-18"
+        endDate: "2025-01-17"
       - name: Extended update support Term 2
-        timeBegin: "2025-01-18"
-        timeEnd: "2026-01-17"
+        startDate: "2025-01-18"
+        endDate: "2026-01-17"
       - name: Extended update support Term 3
-        timeBegin: "2026-01-18"
-        timeEnd: "2027-01-17"
+        startDate: "2026-01-18"
+        endDate: "2027-01-17"
     platformCompatibility:
       - name: openshift
         versions:
@@ -286,11 +286,11 @@ versions:
   - name: "4.17"
     phases:
       - name: Full support
-        timeBegin: "2024-10-01"
-        timeEnd: "2025-05-25"
+        startDate: "2024-10-01"
+        endDate: "2025-05-25"
       - name: Maintenance support
-        timeBegin: "2025-05-26"
-        timeEnd: "2026-04-01"
+        startDate: "2025-05-26"
+        endDate: "2026-04-01"
     platformCompatibility:
       - name: openshift
         versions:
